@@ -1,0 +1,994 @@
+http://buildrepo/New_Releases/Components/policyService/
+https://kodejava.org/category/java/java-generics/
+http://tutorials.jenkov.com/java-generics/generic-list.html
+
+*/2 * * * *
+
+com.jamcracker.advapi.common.utils.CommonUtil
+
+public abstract class CommonUtil implements java.io.Serializable
+For default
+
+if(!JSDNWebConstants.DEAFULT.equals(loggedInUser.getDepartment())){
+				try {
+					
+					menu.put("servicesList", getServicesCodeList());
+					
+				} catch (CatalogException e) {
+					LOG.error("Get Service list failed for CMS ", e);
+				}
+			}
+			
+================================
+
+simple way to convert list into the string array[]
+ //converting actortypes list into the String array
+				List<String> actTypes = new  ArrayList<String>();
+				String[] actorTypes = actTypes.toArray(new String[actTypes.size()]);
+				
+//
+
+
+=========================================
+Simple way to convert map values into the list
+
+ArrayList afmdList = new ArrayList();
+    	
+    	String aType =null;
+    	HashMap actorMap = new HashMap();
+    	Iterator it = map.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry values = (Map.Entry)it.next();
+            afmdList.add(((ArrayList)values.getValue()).get(0));     //**
+        }
+        Iterator itr = map.keySet().iterator();
+		
+    	StringBuffer sbErrors = new StringBuffer("");
+    	sbErrors.append( validate(afmdList) );
+
+
+converting json to map
+protected Map<String, Object> convertJsonToMapObject(String jsonInput) {
+
+		if (LOG.isDebugEnabled()) {
+			LOG.debug("convertJsonToMapObject Started" + jsonInput);
+		}
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> jsonObject = null;
+		try {
+			jsonObject = mapper.readValue(jsonInput, Map.class);
+		} catch (Exception e) {
+			LOG.error("convertJsonToMapObject Error" + e, e);
+		}
+
+		return jsonObject;
+	}
+	==================================
+	Generic Map Example
+	
+	Map <Integer, String> map = new HashMap<Integer, String>();
+	
+	Map <Integer, String> map = new HashMap<>();
+	
+	Map <Integer, String> map = new HashMap<>();
+	map.put(1, "A");
+	map.put(2, "B");
+	map.put(3, "C");
+
+	//map.put("4", new Date()); // Compile time error!  
+
+	String a = map.get(1);
+	String b = map.get(2);
+	String c = map.get(3);
+	
+	Iterate key collections.
+	=============================
+	Iterator keyIterator = map.keySet().iterator();
+while (keyIterator.hasNext()) {
+    Integer key = keyIterator.next();
+    String value = map.get(key);
+    System.out.println("key = " + key + "; value = " + value);
+}
+	
+	
+	==========================
+
+Iterates value collections.
+
+
+Iterator valueIterator = map.values().iterator();
+while(valueIterator.hasNext()) {
+    System.out.println("value = " + valueIterator.next());
+}
+
+
+==============================
+
+for (Integer key : map.keySet()) {
+    String value = map.get(key);
+    System.out.println("key = " + key + "; value = " + value);
+}
+
+for (String s : map.values()) {
+    System.out.println("value = " + s);
+}
+
+Generic map
+===========================================
+Map<Integer, String> map = new HashMap<Integer, String>;
+
+//... add key, value pairs to the Map
+
+// iterate keys.
+Iterator<Integer> keyIterator   = map.keySet().iterator();
+
+while(keyIterator.hasNext()){
+  Integer aKey   = keyIterator.next();
+  String  aValue = map.get(aKey);
+}
+
+
+Iterator<String>  valueIterator = map.values().iterator();
+
+while(valueIterator.hasNext()){
+  String aString = valueIterator.next();
+}
+
+another way by using for each loop
+Map<Integer, String> map = new HashMap<Integer, String>;
+
+//... add key, value pairs to the Map
+
+for(Integer aKey : map.keySet()) {
+    String aValue = map.get(aKey);
+    System.out.println("" + aKey + ":" + aValue);
+}
+
+for(String aValue : map.values()) {
+    System.out.println(aValue);
+}
+===================================================
+
+Generic List 
+
+
+List<String> list = new ArrayList<String>;
+
+String string1 = "a string";
+list.add(string1);
+
+String string2 = list.get(0);
+==================================
+
+Iterating generic list
+List<String> list = new ArrayList<String>;
+
+Iterator<String> iterator = list.iterator();
+
+while(iterator.hasNext()){
+  String aString = iterator.next();
+}
+
+
+by foreach loop
+List<String> list = new ArrayList<String>;
+
+for(String aString : list) {
+    System.out.println(aString);
+}
+========================================
+===================================
+
+var elements = document.getElementById("dataCollectionForm").elements;
+		var fieldMapJson={};
+		var serviceId;
+		for (var i = 0, element; element = elements[i++];) {
+		    if (element.type == "text"){
+		    	fieldMapJson[element.name]=element.value;
+		    }
+		}
+		================================
+		
+		convert object to json
+		=====================================
+		public static String convertObjectToJSON(Object obj) {
+		LOG.debug("#####convertObjectToJSON Started ####### ");
+		ObjectMapper mapper = new ObjectMapper();
+		String json = null;
+		try {
+			json = mapper.writeValueAsString(obj);
+		} catch (Exception e) {
+			LOG.error(e);
+		}
+		LOG.debug("#####convertObjectToJSON Completed#######");
+		return json;
+	}
+===================
+
+
+convert string to object
+==========
+
+private synchronized static Object convertStringToObject(String str) throws Exception
+	{
+		char[] c = str.toCharArray();
+		byte[] b = Base64Coder.decode(c);
+
+		ByteArrayInputStream bais = new ByteArrayInputStream(b);
+		ObjectInputStream ois = new ObjectInputStream(bais);
+		return ois.readObject();
+	}
+	
+	====================================
+	
+	convert object to string
+	================================
+	public synchronized static String convertObjectToString(Object object) throws Exception
+	{
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		ObjectOutputStream oop = new ObjectOutputStream(baos);
+		oop.writeObject(object);
+		oop.flush();
+		oop.close();
+		baos.close();
+
+		byte[] b = baos.toByteArray();
+		char[] c = Base64Coder.encode(b);
+		String s = new String(c);
+		return s;
+	}
+============================================================	
+String [] actorTypes;
+Arrays.asList(actorTypes).toString();
+or
+String[] words = {"000", "aaa", "bbb", "ccc", "ddd"};
+List<String> wordList = new ArrayList<String>(Arrays.asList(words));
+======================
+set request
+// getting serviceLevelAFMDLsit for Partner Credentials
+		List<ActorFieldMapData> afmdList = getPartnerCredentials(actorTypes, request, serviceIdint);
+		
+		//keeping afmdlist into request object to get afmdlist in jsp
+		request.setAttribute("afmdList", afmdList);
+to get request object
+
+<%=(String)request.getAttribute("Report_Data")%>
+=========
+
+IUserWebSession userwebsession = UserSessionFactory.getInstance()
+				.getActiveUserSession(request);
+userwebsession.setProperty("serviceAFMData", jcPageContent);
+
+======================
+
+
+===============
+int companyId = getUserContext(request).getCompanyId();
+*/2 * * * *
+=========
+check to pass hidden values and ajax call
+function updatePartnerDetails()
+	{
+		var elements = document.getElementById("dataCollectionForm").elements;
+		var fieldMapJson={};
+		var serviceId;
+		for (var i = 0, element; element = elements[i++];) {
+		    if (element.type == "text"){
+		    	fieldMapJson[element.name]=element.value;
+		    }
+		}
+		if($('#dataCollectionForm').valid()){
+			
+			var url ="<%=request.getContextPath()%>/administration/updatePartnerDetail.do?task=301";
+			var form = document.createElement("form");
+			var input = document.createElement("input");
+			form.action = url;
+			form.name = "partnerCredentialsForm";
+			form.method = "post";
+			
+			input.type = "hidden";
+			input.name = "serviceId";
+			input.id = "serviceId";
+			input.value = '<%=serviceId%>';
+			form.appendChild(input);
+
+			var input = document.createElement("input");
+			input.type = "hidden";
+			input.name = "companyId";
+			input.id = "companyId";
+			input.value =document.getElementsByName("companyId");
+			form.appendChild(input);
+			input.type = "hidden";
+			input.id = "fieldMapJson";
+			input.name = "fieldMapJson";
+			input.value =JSON.stringify(fieldMapJson);
+			form.appendChild(input);
+			
+			var serviceId = '<%=serviceId%>';
+			var params =  "serviceId="+serviceId+"&fieldMapJson="+JSON.stringify(fieldMapJson)
+			$.ajax({
+		         url: url,
+		         method:"POST",
+		         async:false,
+		         data:params, 
+		         success:function(msg){
+		        	 
+		        	 var status = msg.status;
+		        	 if(status == "error"){
+		        		 $('.notify-msg').text(msg.message);
+		        		 $('#errorBar').show();
+		        		 
+		        	 }else{
+		        		 parent.reqDiscount.hide();
+		        	 }
+		         }
+		        });
+			}
+		
+	}
+	
+	========================
+	in jsp
+	
+	 <% ArrayList afmdList = (ArrayList)request.getAttribute("afmdList");
+                            if(afmdList.size() > 0){%>
+                            //logic
+                            <%}%>
+                            
+     ===============
+     
+     dhtml example : reqDiscount is unique id
+     <% ArrayList afmdList = (ArrayList)request.getAttribute("afmdList");
+                            if(afmdList.size() > 0){%>
+		
+			var serviceId = document.editCatalogForm.serviceId.value;
+			var pageURL = "<%=request.getContextPath()%>/administration/getPartnerDetailForReseller.do?serviceId="+serviceId;
+			var title= '<bean:message bundle="MESSAGE_KEY/store" key="jsdn.store.partner.details.title" editable="false" escape="true"/>';
+			serviceDiv = dhtmlmodal.open('reqDiscount', 'iframe', ''+pageURL+'', title, 'width=500px,height=150px,left=290px,top=100px,resize=0,scrolling=1');
+		<%}%>
+		parent.reqDiscount.hide();
+		
+		============================================
+		public static int getMarketPlaceId(JSDNUserSessionInfo storeUserSession) {
+
+		int marketplaceId = 0;
+
+		if(JSDNConstants.Y.equalsIgnoreCase(storeUserSession.getStoreInfo().getHasMarketPlace())){
+			// user logged into a market place
+			marketplaceId = storeUserSession.getStoreCompanyInfo().getCompanyID();
+		} else {
+			// user logged into a D store.
+			marketplaceId = storeUserSession.getStoreCompanyInfo().getParentShortInfo().getCompanyID();
+		}
+
+		return marketplaceId;
+	}
+	=============
+	
+	#dhtmlwindowholder .drag-statusarea{
+	display:none !important;
+
+
+Converting String [] to String 
+
+String types = "";
+	    		
+	    		for (String str : Arrays.asList(actorTypes)) {
+	    			types = types +"'"+str+"'"+',';
+	    		}
+	    			types = types.substring(0,types.length()-1);// removing last character
+=============================================================================================
+
+to get store id:
+String storeID = String.valueOf(userContainer.getSelectedOrg().getCompanyID());   
+
+========================
+ memberinfo.setCompanyId(Integer.valueOf(userContainer.getSelectedOrg().getCompanyID()).toString());
+------------------------------------------------------------------  
+
+
+===========================
+
+Rest url :
+
+==================
+ private ActionForward getCustomerPrice(ActionMapping mapping,
+			ActionForm form, HttpServletRequest request,
+			HttpServletResponse response, UserContainer userContainer) {
+    	LOG.debug("getCustomerPrice() started");
+    	
+    	EditCatalogForm editCatalogForm = (EditCatalogForm)form; 
+    	String retPricec = editCatalogForm.getRetPrice();
+    	String storeID = String.valueOf(userContainer.getSelectedOrg().getCompanyID());
+    	String customerID = editCatalogForm.getCompanyName();
+    	String offerId = editCatalogForm.getOfferId();
+    	
+    	String url = new StringBuilder().append(JCProperties.getInstance().
+    			getProperty("jsdnEndPointUrl")).append("2.0/jcbillingext").append("/createOrUpdateOfferPriceByID/")
+    			.append(storeID).append("/").append(customerID).append("/").append(offerId).append("/").append(retPricec).toString();
+    	
+    	LOG.debug("rest Url: "+url);
+    	
+    	RestClient client = SpringContextFactory.getApplicationContext().getBean(RestClient.class);
+    	
+    	Map<String,String> headers = new HashMap<>();
+    	headers.put("X-Auth-token", getUserContext(request).getToken());
+    	headers.put("Accept", "application/json");
+    	headers.put("Content-Type", "application/json");
+    	
+    	try{
+    		String responseData = client.post(url, "", headers);
+    	}catch(Exception e){
+    		request.removeAttribute("successMSg");
+    		throw e;
+    	}
+	 
+		//request.setAttribute("successMSg", "Updated Successfully");
+		 request.setAttribute("successMSg", JCResourceUtil.getMessage(request, "marketplace.newcustomer.successMsg"));
+    	
+		LOG.debug("getCustomerPrice() ended");
+		
+    	return mapping.findForward(JSDNConstants.SUCCESS);
+    	
+	}             
+
+
+===================
+
+space issue resolver by using trim()
+==============================
+
+String activeProvidersListStr = (String) ((Map)getValueFromUserWebSession("providerAttMap")).get("activeProvidersListStr");
+			List<String> activeProvidersList = new ArrayList<String>();
+			String[] activeProviders = activeProvidersListStr.split(",");
+			for(String activeProvider: activeProviders){
+				activeProvidersList.add(activeProvider.trim());
+			}
+======================
+
+<select id="companyName" name="companyName" class="sbFormMediumTextField" onchange="">
+	      
+	      <option value="0" ><bean:message  bundle="MESSAGE_KEY/emarketplace" key="marketplace.newcustomer.defaultselect"/>
+	      </option>
+			
+			<%
+				ArrayList companyList = (ArrayList)session.getAttribute("companyList");			
+						 for(int i = 0 ; i <companyList.size() ; i++){
+							 MemberInfo info = (MemberInfo) companyList.get(i);
+							 out.print(" <option value=\"" + info.getActorId() + "\">"
+							+ info.getCompanyName() + "</option>");
+				}
+			%>
+             </select>
+
+
+================================
+
+dynamic currency nad  price description in jsdn : <%=editCatalogForm.getCurrency()%> <%=editCatalogForm.getPriceDesc()%>
+
+=====================
+
+service code list : 
+//Get list of categories and sub categories
+		List<Service> serviceList = new ArrayList<Service>();
+		serviceList = catalogAPI.getAllStoreServices(catalogSearch);
+		//Get list of service code
+		List<String> serviceCodeList = new ArrayList<>();
+		for(Service service: serviceList){
+			serviceCodeList.add(service.getServiceCode());
+        }
+        //convert list of service code into json object 
+		String allServiceCodeList = com.jamcracker.advapi.common.utils.CommonUtil.convertObjectToJSON(serviceCodeList);
+		LOG.debug("getServicesCodeList() ended");
+		return allServiceCodeList;
+
+====================
+success message key in jsdn
+JCResourceUtil.getMessage(request, "jsdn.partnercred.success.msg")
+
+==========================================
+marketplace level company Id for proxy
+
+int companyId = getUserContainer(request).getSelectedOrg().getCompanyID();
+=========================================================================
+select * from jcp_event_action  action_id
+
+select * from jcp_event_subscriber_action  where action_id 
+==============================================
+to get ui metadata value from db in ftl
+var minuteToolTip='<@jcui.message key="jsdn.store.policy.tooltip.mint"><@jcui.msgparam value="'+${minValue}+'"/></@jcui.message>';
+
+================================
+for local instance running status 
+select * from jcp_server  where server_name  ='testmoni123'
+
+update jcp_server set status  = 5 where server_name ='testmoni123'
+
+for image
+update jcp_server set status  = 13 where server_name ='testmoni123'
+
+jcp_event_subscriber_action
+action_id= 10033
+
+
+===============================
+
+
+for dbdump manual query update
+
+CREATE OR REPLACE FUNCTION uuid_generate_v1() RETURNS uuid AS '$libdir/uuid-ossp', 'uuid_generate_v1' LANGUAGE c VOLATILE STRICT COST 1;
+					ALTER FUNCTION uuid_generate_v1() OWNER TO postgres;
+
+					CREATE OR REPLACE FUNCTION uuid_generate_v1mc() RETURNS uuid AS '$libdir/uuid-ossp', 'uuid_generate_v1mc' LANGUAGE c VOLATILE STRICT COST 1;
+					ALTER FUNCTION uuid_generate_v1mc() OWNER TO postgres;
+
+					CREATE OR REPLACE FUNCTION uuid_generate_v3(namespace uuid, name text) RETURNS uuid AS '$libdir/uuid-ossp', 'uuid_generate_v3' LANGUAGE c IMMUTABLE STRICT COST 1;
+					ALTER FUNCTION uuid_generate_v3(uuid, text) OWNER TO postgres;
+
+					CREATE OR REPLACE FUNCTION uuid_generate_v4() RETURNS uuid AS '$libdir/uuid-ossp', 'uuid_generate_v4' LANGUAGE c VOLATILE STRICT COST 1;
+					ALTER FUNCTION uuid_generate_v4() OWNER TO postgres;
+
+					CREATE OR REPLACE FUNCTION uuid_generate_v5( namespace uuid, name text) RETURNS uuid AS '$libdir/uuid-ossp', 'uuid_generate_v5' LANGUAGE c IMMUTABLE STRICT COST 1;
+					ALTER FUNCTION uuid_generate_v5(uuid, text) OWNER TO postgres;
+
+jboss/jboss7122
+entstorecre.dailymktapril.com:8080/jsdn/guest/storeHome.action
+
+policy pp_config
+/office/perforce/jaws/jccsb/services/policy/trunk/policy-serviceImpl/src/main/resources/policy/
+
+if(ValidationUtil.isNotBlankOrNull(event.getServerId())){
+			
+			Server server = service.getServerDetails(event.getServerId());
+			request.putInResponse("baseServer", server);
+		}else{
+			LOG.error("Failed to get ServerId" + event.getServerId());
+			throw new ComputeException(ComputeFaultCode.SERVER_ID_FOUND_TO_BE_NULL, null);
+			
+		}
+
+
+
+		ImageInfo imageInfo = null;
+		
+		SearchImageRequest searchImageRequest = new SearchImageRequest();
+		searchImageRequest.setImageRef(server.getImageRef());
+		searchImageRequest.setProvider(server.getProvider().getProviderID());
+		
+		ProviderRegionInfo providerRegionInfo = orcheProviderRegionRepository.getProviderRegionInfo(server.getPlacement().getPlacementZone(), server.getProvider().getProviderID());
+		
+		searchImageRequest.setRegionId(providerRegionInfo.getRegionId());
+		
+		try{
+			imageInfo = stackRepository.getImageInfo(searchImageRequest);
+		}catch(NoResultException ne){
+			LOG.error("image info not exist with imageCode = " +searchImageRequest.getImageRef());
+			throw new ComputeException(ComputeFaultCode.FAILED_TO_GET_PTOVIDERINFO);
+		}
+		
+
+
+http://buildrepo/New_Releases/Components/policyService/
+
+updateComponentDB
+deployComponentPPConfig
+
+
+===================================
+
+
+for policy tags validation message
+
+Mathod : function validateTags(elementId,errorMsg)
+
+if( (selectedEntity && selectedEntity=='Instance')&&(elementVal) && (elementVal=='disaterRecovery_action' || elementVal=='notifyInstanceDown_action')){
+		if($('input[name="policyKey"]')[0].value != ''){
+			removePolicyErrorMessage(elementId);
+			isValid = true;
+		}
+	else{
+		isValid = false;
+		setPolicyErrorMessage(elementId,errorMsg);
+	}
+	}
+	else
+
+==========
+ grep -r "minuteToolTip" /office/TASK/swat/
+
+================================
+
+
+
+//jaws/RELEASES/JSDN/Rel-7.12.2/Base/apps/network-app/src/main/resources/META-INF/ftls/web2/modules/network/floatingip/manageFloatingIP.ftl
+
+
+
+//jaws/RELEASES/Customers/Lintasarta/patch-7.12.2-phase1/apps/network-app/src/main/resources/META-INF/ftls/web2/modules/network/floatingip/manageFloatingIP.ftl
+
+
+
+
+
+//jaws/RELEASES/Customers/Lintasarta/patch-7.12.2-phase1
+
+<img style='margin-left: 9px;margin-top: 10px;' id='tooltip_image_"+obj.name+"' title='"+obj.description+"' alt='"+obj.description+"' src='"+contextPath+"/web2/images/help_icon.png' class='vAlignMiddle marginTop-4 resize_field_help_img'>
+
+line 279
+
+output += "<td width='70%'><input type='text' "+readOnlyText+" name='" + fieldName +"' id='"+i+"@provider_attributes' class='sbFormMediumTextField'/><img style='margin-left: 9px;margin-top: 10px;' id='tooltip_image_"+obj.name+"' title='"+obj.description+"' alt='"+obj.description+"' src='"+contextPath+"/web2/images/help_icon.png' class='vAlignMiddle marginTop-4 resize_field_help_img'><span id='Error_Image_" + fieldName +"' style=\"height:15px;\">&nbsp;</span></td></tr></table>";
+
+
+==========================
+Privilege details
+================================
+select  * from jcp_resource where resources_name='terminateServerEvent'; take resource_id=?
+
+select * from jcp_resourceaction where resources_id=6028 ; take 
+
+select * from jcp_resource_action_privilege where resource_action_id=6028;// take privilege id=?
+
+select * from jcp_privilege where privilege_id=?;
+
+
+===========================
+Role privilege
+==================================
+
+
+select * from jcp_person where email='jamcracker860@gmail.com'
+select  * from jcp_actor_roles_maps where actor_id=4010505 and service_id=1  // role id 4010520   pr90124
+
+select * from jcp_role_tl where role_id=4010520
+
+
+select * from jcp_role_privilege where privilege_id=90124 and role_id = 4010520
+=======================================================================================
+Query
+
+<insert tableName="JCP_EVENT">
+
+
+
+
+                 <column name="JCP_EVENT_ID" valueComputed="(SELECT MAX(JCP_EVENT_ID) + 1 FROM JCP_EVENT)"/>
+
+                 <column name="EVENT_NAME" value="updateIsvAccountDetailsEvent"/>
+
+
+
+                 <column name="EVENT_TYPE" value="JSDN_ADV_API"/>
+
+                 <column name="EVENT_DESC" value="updateIsvAccountDetailsEvent"/>
+
+
+                 <column name="EVENT_STATUS" value="A"/>
+
+
+
+
+                 <column name="EVENT_DISPLAY_NAME" value="updateIsvAccountDetailsEvent"/>
+
+
+
+                 <column name="PARENT_EVENT_ID" value="0"/>
+
+                 <column name="LAST_ARCHIVAL_DATE" valueDate="${SYSTEMDATE}"/>
+                 <column name="CREATION_DATE" valueDate="${SYSTEMDATE}"/>
+
+
+                 <column name="CREATED_BY" value="1002"/>
+
+
+
+                 <column name="UPDATE_DATE" valueDate="${SYSTEMDATE}"/>
+                 <column name="UPDATED_BY" value="1002"/>
+   </insert>
+
+<changeSet author="7.12.4" id="CREATE_VCLOUD_ISV_EVENT_RBAC_ENTRIES_2017">
+ <comment>insert seed data into JCP_RESOURCE,JCP_RESOURCEACTION and JCP_RESOURCE_ACTION_PRIVILEGE tables related to service level afmd for actor types</comment>
+
+      <customChange class="com.jamcracker.liquibase.rbac.RBACEntries">
+
+        <param name="filePath" value="liquibasedb/seed_data/CREATE_VCLOUD_ISV_EVENT_RBAC.csv"></param>
+
+
+      </customChange>
+</changeSet>
+============================
+
+for error message on same page
+
+String errorMsg = se.getMessage();
+			response.setContentType("application/json");
+			json.put("status", "error");
+			json.put("message", errorMsg);
+			writer.write(json.toString());
+
+====================
+<div id="errorBar" style="display:none" class="notify-wrapper notify-wrapper-oneattime">
+	<div class="jnotify-item-wrapper">
+		<div class="ui-corner-all jnotify-item ui-state-highlight">
+			<div class="jnotify-item-close">
+				<span class="ui-icon ui-icon-circle-close">
+					</span>
+			</div>
+					<span style="float:left; margin-right: .3em;" class="ui-icon ui-icon-info">
+						</span>
+							<div class="notify-msg">
+								</div>
+		</div>
+	</div>
+</div>
+
+
+======================================
+
+proxy true or false
+
+---------------------------------------
+
+/*//changes made for template label
+				String tName = null;
+				List<ResourceScript> resourceScriptLists = new ArrayList();
+				
+				
+				for(ResourceScript resourceScript : resourceScriptList){
+					tName = getMessage("resourcescript.view.template.name."+resourceScript.getProviderResourceTemplate().getTemplateName());
+					resourceScript.getProviderResourceTemplate().setTemplateName(tName);
+					resourceScriptLists.add(resourceScript);
+				}*/
+
+
+
+===============================================
+
+<dependency>
+      <groupId>com.jamcracker.openstack</groupId>
+      <artifactId>openstack-computeExt-adapter</artifactId>
+      <version>1.31-SNAPSHOT</version>
+      <exclusions>
+				<exclusion>
+					<groupId>*</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+			</exclusions>
+    </dependency>
+    
+    <dependency>
+      <groupId>com.jamcracker.services</groupId>
+      <artifactId></artifactId>
+      <version></version>
+      <exclusions>
+				<exclusion>
+					<groupId>*</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+			</exclusions>
+    </dependency>
+    
+    
+    ======================================
+    
+    New privilege
+    
+    <changeSet id="RBAC_FOR_VIEW_REEXECUTE_SCRIPTS_NOV30" author="tbird">
+<insert tableName="JCP_PRIVILEGE">
+                <column name="PRIVILEGE_ID" valueComputed="(SELECT MAX(PRIVILEGE_ID)+1 FROM JCP_PRIVILEGE where PRIVILEGE_ID &lt; 10000)"/>
+                <column name="NAME" value="View Script"/>
+                <column name="DESCRIPTION" value="View Script"/>
+                <column name="SERVICE_ID" value="1"/>
+                <column name="CREATION_DATE" valueDate="${SYSTEMDATE}"/>
+                 <column name="CREATED_BY" value="0"/>
+                 <column name="UPDATE_DATE" valueDate="${SYSTEMDATE}"/>
+                 <column name="UPDATED_BY" value="0"/>
+     </insert>
+
+    <insert tableName="JCP_PRIVILEGE_TL">
+                <column name="PRIVILEGE_ID" valueComputed="(SELECT PRIVILEGE_ID FROM JCP_PRIVILEGE WHERE NAME='View Script')"/>
+                <column name="NAME" value="View Script"/>
+                <column name="DESCRIPTION" value="View Script"/>
+                <column name="LOCALE" value="en_US"/>
+                <column name="CREATION_DATE" valueDate="${SYSTEMDATE}"/>
+                 <column name="CREATED_BY" value="0"/>
+                 <column name="UPDATE_DATE" valueDate="${SYSTEMDATE}"/>
+                 <column name="UPDATED_BY" value="0"/>
+     </insert>
+
+     <insert tableName="JCP_ROLE_PRIVILEGE">
+                <column name="ROLE_PRIVILEGE_ID" valueComputed="(select max(ROLE_PRIVILEGE_ID) + 1 from jcp_role_privilege where ROLE_PRIVILEGE_ID &lt; 10000)"/>
+                <column name="PRIVILEGE_ID" valueComputed="(SELECT PRIVILEGE_ID FROM JCP_PRIVILEGE WHERE NAME ='View Script')"/>
+                <column name="ROLE_ID" valueComputed="(SELECT MIN(ROLE_ID) FROM JCP_ROLE_B WHERE ROLE_CODE='Customer Admin')"/>
+                 <column name="CREATION_DATE" valueDate="${SYSTEMDATE}"/>
+                 <column name="CREATED_BY" value="0"/>
+                 <column name="UPDATE_DATE" valueDate="${SYSTEMDATE}"/>
+                 <column name="UPDATED_BY" value="0"/>
+                <column name="STATUS" value="A"/>
+     </insert>
+     
+      <insert tableName="JCP_ROLE_PRIVILEGE">
+                <column name="ROLE_PRIVILEGE_ID" valueComputed="(select max(ROLE_PRIVILEGE_ID) + 1 from jcp_role_privilege where ROLE_PRIVILEGE_ID &lt; 10000)"/>
+                <column name="PRIVILEGE_ID" valueComputed="(SELECT PRIVILEGE_ID FROM JCP_PRIVILEGE WHERE NAME ='View Script')"/>
+                <column name="ROLE_ID" valueComputed="(SELECT MIN(ROLE_ID) FROM JCP_ROLE_B WHERE ROLE_CODE='Reseller/Store Admin')"/>
+                 <column name="CREATION_DATE" valueDate="${SYSTEMDATE}"/>
+                 <column name="CREATED_BY" value="0"/>
+                 <column name="UPDATE_DATE" valueDate="${SYSTEMDATE}"/>
+                 <column name="UPDATED_BY" value="0"/>
+                <column name="STATUS" value="A"/>
+     </insert>
+
+
+     <insert tableName="JCP_ORG_PRIVILEGE_TEMPLATE">
+                <column name="ORG_PRIVILEGE_TEMPLATE_ID" valueComputed="(select max(org_privilege_template_id)+1 from jcp_org_privilege_template where org_privilege_template_id &lt; 10000)"/>
+                <column name="PRIVILEGE_ID" valueComputed="(SELECT PRIVILEGE_ID FROM JCP_PRIVILEGE WHERE NAME='View Script')"/>
+                <column name="ACTOR_ID" value="1000"/>
+                <column name="ORGANIZATION_TYPE" value="SP"/>
+                <column name="CREATION_DATE" valueDate="${SYSTEMDATE}"/>
+                 <column name="CREATED_BY" value="0"/>
+                 <column name="UPDATE_DATE" valueDate="${SYSTEMDATE}"/>
+                 <column name="UPDATED_BY" value="0"/>
+                <column name="STATUS" value="Y"/>
+    </insert>
+    
+    <insert tableName="JCP_ORG_PRIVILEGE_TEMPLATE">
+                <column name="ORG_PRIVILEGE_TEMPLATE_ID" valueComputed="(select max(org_privilege_template_id)+1 from jcp_org_privilege_template where org_privilege_template_id &lt; 10000)"/>
+                <column name="PRIVILEGE_ID" valueComputed="(SELECT PRIVILEGE_ID FROM JCP_PRIVILEGE WHERE NAME='View Script')"/>
+                <column name="ACTOR_ID" value="1000"/>
+                <column name="ORGANIZATION_TYPE" value="M"/>
+                <column name="CREATION_DATE" valueDate="${SYSTEMDATE}"/>
+                 <column name="CREATED_BY" value="0"/>
+                 <column name="UPDATE_DATE" valueDate="${SYSTEMDATE}"/>
+                 <column name="UPDATED_BY" value="0"/>
+                <column name="STATUS" value="Y"/>
+    </insert>
+    <insert tableName="JCP_PRIVILEGE_CATEGORY_MAP">
+                <column name="PRIVILEGE_ID" valueComputed="(SELECT PRIVILEGE_ID FROM JCP_PRIVILEGE WHERE NAME='View Script')"/>
+                <column name="CATEGORY_ID" valueComputed="(select category_id from JCP_PRIVILEGE_CATEGORY where  category_name ='Resource Script')"/>               
+   </insert>
+   <insert tableName="JCP_ORG_PRIVILEGE_TEMPLATE">
+                <column name="ORG_PRIVILEGE_TEMPLATE_ID" valueComputed="(select max(org_privilege_template_id)+1 from jcp_org_privilege_template where org_privilege_template_id &lt; 10000)"/>
+                <column name="PRIVILEGE_ID" valueComputed="(SELECT PRIVILEGE_ID FROM JCP_PRIVILEGE WHERE NAME='View Script')"/>
+                <column name="ACTOR_ID" value="1000"/>
+                <column name="ORGANIZATION_TYPE" value="E"/>
+                <column name="CREATION_DATE" valueDate="${SYSTEMDATE}"/>
+                 <column name="CREATED_BY" value="0"/>
+                 <column name="UPDATE_DATE" valueDate="${SYSTEMDATE}"/>
+                 <column name="UPDATED_BY" value="0"/>
+                <column name="STATUS" value="Y"/>
+    </insert>
+
+
+</changeSet>
+<changeSet author="tbird" id="action_event_privilege_rbac_nov30">
+			<comment>insert RBAC_LIST_RESOURCE_SCRIPT_EVENT previleges</comment>
+			<customChange class="com.jamcracker.liquibase.rbac.RBACEntries">
+			<param name="filePath" value="liquibasedb/seed_data/RBAC_VIEW_REEXECUTE_SCRIPT.csv"></param>
+		  </customChange>
+</changeSet>
+
+============================
+RESOURCES_TYPE,RESOURCES_NAME,ACTION_ID,PRIVILEGE_ID
+1,/resourceScript/viewResourceScript.action,6001,View Script
+2,ResourceScriptService_GetScript,1,View Script
+
+
+====================
+
+
+publish service from cms store :
+
+1) Goto configuration->JSDN->Jsdn Get Services
+2) select service and edit , select mandatory field like Catogery
+3) Save
+
+Goto Content tab and save it
+
+
+========================
+
+direct to get facade
+
+IPurchaseOrderFacade purchaseOrderFacadeBean= PurchaseOrderFacadeUtil.getPurchaseOrderFacade();
+
+
+wget https://www.scootersoftware.com/bcompare-4.2.4.22795_amd64.deb
+sudo apt-get update
+sudo apt-get install gdebi-core
+sudo gdebi bcompare-4.2.4.22795_amd64.deb
+====================
+removed dependency
+<dependency>
+        <groupId>com.jcraft</groupId>
+        <artifactId>jsch</artifactId>
+        <version>0.1.52</version>
+      </dependency>
+		<dependency>
+			<groupId>org.apache.xmlbeans</groupId>
+			<artifactId>xmlbeans</artifactId>
+			<version>2.4.0</version>
+		</dependency>
+
+copying file from server to local
+
+scp -r root@172.16.9.235:/d01/jboss-as-7.1.1.Final /office/softwares/jboss
+=====================================================================
+dump
+mchine root user
+scp -r root@172.16.9.235:/var/lib/pgsql/sf7125_19_02_2018_04_25.dump.out  /office/softwares/sccdum
+======================================================================
+switching one user to another
+su - postgres (for poatgres)
+su - jboss (for jboss)
+
+===========================================================
+
+giving file owner permisiion to postgres user
+
+ chown postgres:postgres import.sh 
+ chown postgres:postgres sf7125_19_02_2018_04_25.dump.out;
+
+ for jboss
+  chown jboss:jboss import.sh 
+  
+  
+ ===============================================
+ taking file from server to local machine
+ 
+ scp -r root@172.16.9.235:/d01/jboss-as-7.1.1.Final/pp_config /office/softwares/pp_config
+
+source :root@172.16.9.235:/d01/jboss-as-7.1.1.Final/pp_config
+
+destination : /office/softwares/pp_config
+vm arguments: 
+
+"-Dprogram.name=JBossTools: JBoss AS 7.1" -server -Xms2048m -Xmx4096m -XX:MaxPermSize=768m -XX:NewSize=1536m -XX:MaxNewSize=1536m -Dorg.jboss.resolver.warning=true -Djava.net.preferIPv4Stack=true -Dsun.rmi.dgc.client.gcInterval=3600000 -Dsun.rmi.dgc.server.gcInterval=3600000 -Djboss.modules.system.pkgs=org.jboss.byteman -Djava.awt.headless=true "-Dorg.jboss.boot.log.file=/office/softwares/vats/jboss/jboss-as-7.1.1.Final/standalone/log/boot.log" "-Dlogging.configuration=file:/office/softwares/vats/jboss/jboss-as-7.1.1.Final/standalone/configuration/logging.properties" "-Djboss.home.dir=/office/softwares/vats/jboss/jboss-as-7.1.1.Final" -Djboss.bind.address.management=localhost "-DPP_CONFIG_HOME=/office/softwares/vats/jboss/jboss-as-7.1.1.Final/pp_config" "-DPASSPHRASE=/office/softwares/vats/jboss/jboss-as-7.1.1.Final/pp_config/passphrase.txt" "-DENABLE_STARTUP_JOB=Y" 
+    
+scp SCCFrance_7.12.5_201802231120_build.tar root@172.31.6.228:/BuildRepo/New_Releases/JSDN-7.12.5/Builds/Clients/SCC/
+
+sudo apt-get install git-gui
+
+git gui
+
+//EngineeringHome/documentation/MasterDeploymentDocs/JSDN/SCC/JSDN7.12.5-SCCFrance_ReleaseNotes.doc
+
+//EngineeringHome/documentation/MasterDeploymentDocs/JSDN/SCC/JSDN7.12.5-SCCFrance_Deployment.doc
+
+
+
+text-indent: -999px;
+
+
+// JSDN compantAcronym
+
+String companyAcronym = userSessioninfo.getStoreCompanyInfo().getCompanyAcronym();
+<body>
+    <select>
+      <c:forEach var="myMap" items="${colors}">
+        <option value="${myMap.key}"><c:out value="${myMap.value}"/></option>
+      </c:forEach>
+    </select>
+  </body>
+  
+  
+  ========================
+  
+  <dependency>
+					<groupId>com.jamcracker.services</groupId>
+					<artifactId>blockvolume-service</artifactId>
+					<version>1.97-SNAPSHOT</version>
+					<exclusions>
+						<exclusion>
+							<groupId>*</groupId>
+							<artifactId>*</artifactId>
+						</exclusion>
+					</exclusions>
+				</dependency>
+
+
+
+request.getSession().putValue("test", 123);
+		request.getSession().getValue("test");
+		
+		request.getSession().removeValue("test");
+		
+		request.getSession().setAttribute("","");
